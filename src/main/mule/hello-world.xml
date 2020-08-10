@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:batch="http://www.mulesoft.org/schema/mule/batch"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f6601dc3-e08d-40d4-a99b-44506a286f59" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="hello-worldFlow" doc:id="fd5b7c76-8eef-499a-bff8-7b5c176bf1a9" >
+		<http:listener doc:name="Hello World" doc:id="53d578e9-0414-4c27-a410-dc79562ba762" config-ref="HTTP_Listener_config" path="/hello"/>
+		<set-payload value="Hello world" doc:name="Set Payload" doc:id="646a8ecc-6c64-477a-9ba3-0161d91d603e" />
+		<ee:transform doc:name="Transform Message" doc:id="668eb71c-95aa-4f9b-9d2f-c4edf167782d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
